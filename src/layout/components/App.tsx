@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/App';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { WaitingView } from './WaitingView';
 
 export const App = ({
     view,
@@ -10,7 +11,7 @@ export const App = ({
     <>
         <Header />
         <View>
-            view
+            <WaitingView />
         </View>
         <Footer />
     </>
@@ -20,5 +21,7 @@ export type Props = PropsFromState & PropsFromDispatch;
 
 const View = styled.div`
     height: 80vh;
-    padding: 10vh 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
