@@ -4,6 +4,7 @@ import { PropsFromDispatch, PropsFromState } from '../containers/App';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { WaitingView } from './WaitingView';
+import QuestionView from '../../quiz/containers/QuestionView';
 
 export const App = ({
     view,
@@ -11,7 +12,12 @@ export const App = ({
     <>
         <Header />
         <View>
-            <WaitingView />
+            { view === 'waiting' &&
+                <WaitingView />
+            }
+            { view === 'question' &&
+                <QuestionView />
+            }
         </View>
         <Footer />
     </>

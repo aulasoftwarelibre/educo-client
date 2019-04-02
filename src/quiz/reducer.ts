@@ -9,11 +9,15 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
 };
 
 export interface State {
-    readonly view: View,
+    readonly question?: string,
+    readonly answer1?: string,
+    readonly answer2?: string,
+    readonly answer3?: string,
 }
 
-export type View = 'waiting' | 'question';
-
 const initialState: State = {
-    view: 'question',
+    question: undefined,
+    answer1: undefined,
+    answer2: undefined,
+    answer3: undefined,
 };
