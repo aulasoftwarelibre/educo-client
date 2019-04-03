@@ -8,9 +8,12 @@ export function* saga() {
 }
 
 export function* watchSessionSSE() {
-    const url = new URL('http://localhost:1337/hub');
+    const url = new URL(process.env.REACT_APP_SSE_URL);
 
-    url.searchParams.append('topic', 'http://localhost:8000/api/sessions/{id}');
+    url.searchParams.append(
+        'topic',
+        `${process.env.REACT_APP_API_URL}/sessions/{id}`
+    );
 
     const eventSource = new EventSource(url.href);
     const channel = yield call(subscribeSSE, eventSource);
