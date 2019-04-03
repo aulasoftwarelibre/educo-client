@@ -1,7 +1,14 @@
 import { AnyAction, Reducer } from 'redux';
+import { CHANGE_VIEW } from './actions/change-view';
 
 export const reducer: Reducer<State> = (state: State = initialState, action: AnyAction) => {
     switch(action.type) {
+        case CHANGE_VIEW: {
+            return {
+                ...state,
+                view: action.view,
+            };
+        }
         default: {
             return state;
         }
