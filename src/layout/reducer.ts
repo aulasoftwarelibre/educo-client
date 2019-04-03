@@ -15,5 +15,5 @@ export interface State {
 export type View = 'waiting' | 'question';
 
 const initialState: State = {
-    view: 'question',
+    view: 'waiting',
 };
