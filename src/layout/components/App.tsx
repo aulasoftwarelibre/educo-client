@@ -26,7 +26,7 @@ export const App = ({
 export type Props = PropsFromState & PropsFromDispatch;
 
 const View = styled.div`
-    height: 80vh;
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
