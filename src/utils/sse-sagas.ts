@@ -1,5 +1,6 @@
 import { all, call, fork, put, select, take } from 'redux-saga/effects';
 import { subscribeSSE } from './subscribe-sse';
+import { changeView } from '../layout/actions/change-view';
 import { fetchQuestionById } from '../quiz/actions/fetch-question-by-id';
 import { State } from '../reducer';
 
@@ -10,7 +11,7 @@ export function* saga() {
 }
 
 export function* watchSessionSSE() {
-    if (!process.env.REACT_APP_SSE_URL) {
+    if(!process.env.REACT_APP_SSE_URL) {
         throw Error('SSE url is not set');
     }
 
@@ -26,16 +27,22 @@ export function* watchSessionSSE() {
 
     while(true) {
         const message = yield take(channel);
-        const { activeQuestion: activeQuestionId } = JSON.parse(message.data);
+        const { activeQuestion } = JSON.parse(message.data);
+
+        if(!activeQuestion) {
+            yield put(changeView('waiting'));
+            continue;
+        }
+
         const currentQuestion = yield select(question);
 
-        if(
-            activeQuestionId && !currentQuestion ||
-            activeQuestionId && activeQuestionId !== currentQuestion.id
-        ) {
-            yield put(fetchQuestionById(activeQuestionId));
+        if(activeQuestion === currentQuestion) {
+            yield put(changeView('question'));
+            continue;
         }
+
+        yield put(fetchQuestionById(activeQuestion));
     }
 }
 
-export const question = (state: State) => state.quiz.question;
+export const question = (state: State) => state.quiz.question ? state.quiz.question.id : null;
