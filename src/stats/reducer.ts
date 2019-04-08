@@ -1,14 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
-import { CHANGE_VIEW } from './actions/change-view';
 
 export const reducer: Reducer<State> = (state: State = initialState, action: AnyAction) => {
     switch(action.type) {
-        case CHANGE_VIEW: {
-            return {
-                ...state,
-                view: action.view,
-            };
-        }
         default: {
             return state;
         }
@@ -16,11 +9,13 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
 };
 
 export interface State {
-    readonly view: View,
+    readonly percentage1?: number,
+    readonly percentage2?: number,
+    readonly percentage3?: number,
 }
 
-export type View = 'waiting' | 'question' | 'stats';
-
 const initialState: State = {
-    view: 'waiting',
+    percentage1: undefined,
+    percentage2: undefined,
+    percentage3: undefined,
 };

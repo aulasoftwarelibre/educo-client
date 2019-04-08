@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { WaitingView } from './WaitingView';
 import QuestionView from '../../quiz/containers/QuestionView';
+import StatsView from '../../stats/containers/StatsView';
 
 export const App = ({
     view,
@@ -17,6 +18,9 @@ export const App = ({
             }
             { view === 'question' &&
                 <QuestionView />
+            }
+            { view === 'stats' &&
+                <StatsView />
             }
         </View>
         <Footer />
