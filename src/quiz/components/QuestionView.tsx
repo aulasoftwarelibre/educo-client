@@ -60,7 +60,7 @@ const Question = styled.h1`
 
 const RedButton = styled(Button)`
     background: #a6192e !important;
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     width: 80vw;
     height: 8vh;
     font-size: 3vh !important;
@@ -75,7 +75,7 @@ const RedButton = styled(Button)`
 
 const BlueButton = styled(Button)`
     background: #211551 !important;
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     width: 80vw;
     height: 8vh;
     font-size: 3vh !important;
@@ -90,7 +90,7 @@ const BlueButton = styled(Button)`
 
 const YellowButton = styled(Button)`
     background: #f6be00 !important;
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     width: 80vw;
     height: 8vh;
     font-size: 3vh !important;
