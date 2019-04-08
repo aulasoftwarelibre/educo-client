@@ -4,7 +4,7 @@ import { QuestionView } from '../components/QuestionView';
 import { State } from '../../reducer';
 
 const mapStateToProps = ({
-    quiz: { question, answer1, answer2, answer3 }
+    quiz: { question, answer1, answer2, answer3 },
 }: State): PropsFromState => ({
     question: question!.content,
     answer1: answer1!.content,

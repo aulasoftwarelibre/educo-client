@@ -5,7 +5,7 @@ import { View } from '../reducer';
 import { State } from '../../reducer';
 
 const mapStateToProps = ({
-    layout: { view }
+    layout: { view },
 }: State): PropsFromState => ({
     view,
 });
