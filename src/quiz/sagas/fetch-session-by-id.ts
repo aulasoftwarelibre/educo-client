@@ -12,6 +12,7 @@ export function* handleFetchSessionById({}: AnyAction) {
         const { data: { activeQuestion } } = yield call(fetchSessionById);
 
         if(!activeQuestion) {
+            yield put(changeView('waiting'));
             yield put(fetchSessionByIdSuccess);
             return;
         }
