@@ -1,8 +1,9 @@
-import { all, call, fork, put, select, take } from 'redux-saga/effects';
+import { all, call, fork, put, take } from 'redux-saga/effects';
 import { subscribeSSE } from './subscribe-sse';
 import { changeView } from '../layout/actions/change-view';
-import { fetchQuestionById } from '../quiz/actions/fetch-question-by-id';
-import { State } from '../reducer';
+import { Answer, Question } from '../quiz/reducer';
+import { changeQuestion } from '../quiz/actions/change-question';
+import { changeAnswers } from '../quiz/actions/change-answers';
 
 export function* saga() {
     yield all([
@@ -11,11 +12,7 @@ export function* saga() {
 }
 
 export function* watchSessionSSE() {
-    if(!process.env.REACT_APP_SSE_URL) {
-        throw Error('SSE url is not set');
-    }
-
-    const url = new URL(process.env.REACT_APP_SSE_URL);
+    const url = new URL(process.env.REACT_APP_SSE_URL!);
 
     url.searchParams.append(
         'topic',
@@ -34,15 +31,23 @@ export function* watchSessionSSE() {
             continue;
         }
 
-        const currentQuestion = yield select(question);
+        const question: Question = {
+            id: activeQuestion['@id'],
+            content: activeQuestion.content,
+        };
+        const answers: Answer[] = activeQuestion.answers.map((answer: any) => ({
+            id: answer['@id'],
+            content: answer.content,
+        }));
 
-        if(activeQuestion === currentQuestion) {
+        yield put(changeQuestion(question));
+        yield put(changeAnswers(answers));
+
+        if(activeQuestion.isAcceptingAnswers) {
             yield put(changeView('question'));
             continue;
         }
 
-        yield put(fetchQuestionById(activeQuestion));
+        yield put(changeView('stats'));
     }
 }
-
-export const question = (state: State) => state.quiz.question ? state.quiz.question.id : null;
