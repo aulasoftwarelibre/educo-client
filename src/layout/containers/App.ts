@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 import { App } from '../components/App';
 import { View } from '../reducer';
 import { State } from '../../reducer';
+import { fetchSessionById }  from '../../quiz/actions/fetch-session-by-id';
 
 const mapStateToProps = ({
     layout: { view },
@@ -15,9 +16,11 @@ export interface PropsFromState {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): PropsFromDispatch => ({
+    fetchSessionState: () => dispatch(fetchSessionById),
 });
 
 export interface PropsFromDispatch {
+    fetchSessionState: () => AnyAction,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

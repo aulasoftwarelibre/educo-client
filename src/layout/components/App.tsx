@@ -7,25 +7,37 @@ import { WaitingView } from './WaitingView';
 import QuestionView from '../../quiz/containers/QuestionView';
 import StatsView from '../../stats/containers/StatsView';
 
-export const App = ({
-    view,
-}: Props): JSX.Element =>
-    <>
-        <Header />
-        <View>
-            { view === 'waiting' &&
-                <WaitingView />
-            }
-            { view === 'question' &&
-                <QuestionView />
-            }
-            { view === 'stats' &&
-                <StatsView />
-            }
-        </View>
-        <Footer />
-    </>
-;
+export class App extends React.Component<Props> {
+    constructor(props: Props) {
+        super(props);
+    }
+
+    componentWillMount() {
+        this.props.fetchSessionState();
+    }
+
+    render() {
+        const { view } = this.props;
+
+        return(
+            <>
+                <Header/>
+                <View>
+                    { view === 'waiting' &&
+                        <WaitingView/>
+                    }
+                    { view === 'question' &&
+                        <QuestionView/>
+                    }
+                    { view === 'stats' &&
+                        <StatsView/>
+                    }
+                </View>
+                <Footer/>
+            </>
+        );
+    }
+}
 
 export type Props = PropsFromState & PropsFromDispatch;
 
