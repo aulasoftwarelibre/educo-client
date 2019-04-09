@@ -16,11 +16,11 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
 };
 
 export interface State {
-    readonly view: View,
+    readonly view?: View,
 }
 
-export type View = 'waiting' | 'question' | 'stats';
+export type View = 'waiting' | 'question' | 'stats' | undefined;
 
 const initialState: State = {
-    view: 'waiting',
+    view: undefined,
 };
