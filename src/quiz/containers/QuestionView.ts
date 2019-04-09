@@ -4,12 +4,12 @@ import { QuestionView } from '../components/QuestionView';
 import { State } from '../../reducer';
 
 const mapStateToProps = ({
-    quiz: { question, answer1, answer2, answer3 },
+    quiz: { question, answers },
 }: State): PropsFromState => ({
     question: question!.content,
-    answer1: answer1!.content,
-    answer2: answer2!.content,
-    answer3: answer3!.content,
+    answer1: answers![0].content,
+    answer2: answers![1].content,
+    answer3: answers![2].content,
 });
 
 export interface PropsFromState {

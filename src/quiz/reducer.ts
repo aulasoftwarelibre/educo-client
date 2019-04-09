@@ -7,9 +7,7 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
         case FETCH_ANSWERS_BY_QUESTION_ID_SUCCESS: {
             return {
                 ...state,
-                answer1: action.answer1,
-                answer2: action.answer2,
-                answer3: action.answer3,
+                answers: action.answers,
             };
         }
         case FETCH_QUESTION_BY_ID_SUCCESS: {
@@ -26,9 +24,7 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
 
 export interface State {
     readonly question?: Question,
-    readonly answer1?: Answer,
-    readonly answer2?: Answer,
-    readonly answer3?: Answer,
+    readonly answers?: Answer[],
 }
 
 export interface Question {
@@ -43,7 +39,5 @@ export interface Answer {
 
 const initialState: State = {
     question: undefined,
-    answer1: undefined,
-    answer2: undefined,
-    answer3: undefined,
+    answers: undefined,
 };

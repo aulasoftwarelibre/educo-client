@@ -31,7 +31,7 @@ export function* handleFetchQuestionByIdSuccess({ question: { id } }: AnyAction)
             content: answer.content,
         }));
 
-        yield put(fetchAnswersByQuestionIdSuccess(answers[0], answers[1], answers[2]));
+        yield put(fetchAnswersByQuestionIdSuccess(answers));
     } catch(error) {
         yield put(fetchAnswersByQuestionIdFailure);
     }

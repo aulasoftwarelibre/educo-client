@@ -10,11 +10,9 @@ export const fetchAnswersByQuestionId = (id: string): AnyAction => ({
     id,
 });
 
-export const fetchAnswersByQuestionIdSuccess = (answer1: Answer, answer2: Answer, answer3: Answer): AnyAction => ({
+export const fetchAnswersByQuestionIdSuccess = (answers: Answer[]): AnyAction => ({
     type: FETCH_ANSWERS_BY_QUESTION_ID_SUCCESS,
-    answer1,
-    answer2,
-    answer3,
+    answers,
 });
 
 export const fetchAnswersByQuestionIdFailure: AnyAction = ({
