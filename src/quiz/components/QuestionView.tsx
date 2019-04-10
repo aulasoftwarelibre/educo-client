@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/QuestionView';
-import { colorsPalette } from '../../utils/colors-palette';
+import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const QuestionView = ({
     question,
@@ -60,7 +60,7 @@ const Question = styled.h1`
 `;
 
 const Answer = styled(Button)`
-    background: ${props => colorsPalette[props.color]} !important;
+    background: ${(props: AnswerProps) => colorsPalette[props.color]} !important;
     color: rgba(255, 255, 255, 0.8) !important;
     width: 80vw;
     height: 8vh;
@@ -73,3 +73,7 @@ const Answer = styled(Button)`
         font-size: 6vh !important;
     }
 `;
+
+interface AnswerProps {
+    color: PaletteColor,
+}

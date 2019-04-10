@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { colorsPalette } from '../../utils/colors-palette';
+import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const WaitingView = ({
 }: Props): JSX.Element =>
@@ -52,6 +52,11 @@ const Subtitle = styled.h2`
 `;
 
 const Span = styled.span`
-    color: ${props => colorsPalette[props.color]};
-    letter-spacing: ${props => props.stretched ? '-1vw' : '-0.25vw'};
+    color: ${(props: SpanProps) => colorsPalette[props.color]};
+    letter-spacing: ${(props: SpanProps) => props.stretched ? '-1vw' : '-0.25vw'};
 `;
+
+interface SpanProps {
+    color: PaletteColor,
+    stretched?: boolean,
+}

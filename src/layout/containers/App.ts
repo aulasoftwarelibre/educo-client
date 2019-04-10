@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import { AnyAction, Dispatch } from 'redux';
 import { App } from '../components/App';
-import { View } from '../reducer';
 import { State } from '../../reducer';
+import { Question } from '../../quiz/reducer';
 import { fetchSessionById }  from '../../quiz/actions/fetch-session-by-id';
 
 const mapStateToProps = ({
-    layout: { view },
+    quiz: { question },
 }: State): PropsFromState => ({
-    view,
+    question: question!,
 });
 
 export interface PropsFromState {
-    view: View,
+    question: Question,
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): PropsFromDispatch => ({

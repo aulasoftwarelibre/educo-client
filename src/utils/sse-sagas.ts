@@ -1,9 +1,7 @@
 import { all, call, fork, put, take } from 'redux-saga/effects';
 import { subscribeSSE } from './subscribe-sse';
-import { changeView } from '../layout/actions/change-view';
-import { Answer, Question } from '../quiz/reducer';
-import { changeQuestion } from '../quiz/actions/change-question';
-import { changeAnswers } from '../quiz/actions/change-answers';
+import { fetchSessionByIdSuccess } from '../quiz/actions/fetch-session-by-id';
+import { Question } from '../quiz/reducer';
 
 export function* saga() {
     yield all([
@@ -27,27 +25,20 @@ export function* watchSessionSSE() {
         const { activeQuestion } = JSON.parse(message.data);
 
         if(!activeQuestion) {
-            yield put(changeView('waiting'));
+            yield put(fetchSessionByIdSuccess());
             continue;
         }
 
         const question: Question = {
             id: activeQuestion['@id'],
             content: activeQuestion.content,
+            active: activeQuestion.isAcceptingAnswers,
+            answers: activeQuestion.answers.map((answer: any) => ({
+                id: answer['@id'],
+                content: answer.content,
+            })),
         };
-        const answers: Answer[] = activeQuestion.answers.map((answer: any) => ({
-            id: answer['@id'],
-            content: answer.content,
-        }));
 
-        yield put(changeQuestion(question));
-        yield put(changeAnswers(answers));
-
-        if(activeQuestion.isAcceptingAnswers) {
-            yield put(changeView('question'));
-            continue;
-        }
-
-        yield put(changeView('stats'));
+        yield put(fetchSessionByIdSuccess(question));
     }
 }

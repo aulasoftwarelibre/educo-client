@@ -4,3 +4,5 @@ export const colorsPalette = {
     red: '#a6192e',
     yellow: '#f6be00',
 };
+
+export type PaletteColor = 'black' | 'blue' | 'red' | 'yellow';

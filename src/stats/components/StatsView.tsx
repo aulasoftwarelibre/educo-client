@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Grid, Progress } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/StatsView';
-import { colorsPalette } from '../../utils/colors-palette';
+import {colorsPalette, PaletteColor} from '../../utils/colors-palette';
 
 export const StatsView = ({
     question,
@@ -67,7 +67,7 @@ const Question = styled.h1`
 
 const Stat = styled(Progress)`
     .bar {
-        background: ${props => colorsPalette[props.color]} !important;
+        background: ${(props: StatProps) => colorsPalette[props.color]} !important;
         height: 8vh !important;
     }
     
@@ -89,3 +89,7 @@ const Stat = styled(Progress)`
         font-size: 6vh !important;
     }
 `;
+
+interface StatProps {
+    color: PaletteColor,
+}

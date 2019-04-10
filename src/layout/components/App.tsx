@@ -17,21 +17,37 @@ export class App extends React.Component<Props> {
     }
 
     render() {
-        const { view } = this.props;
+        const { question } = this.props;
+
+        if(!question) {
+            return(
+                <>
+                    <Header/>
+                    <View>
+                        <WaitingView />
+                    </View>
+                    <Footer/>
+                </>
+            );
+        }
+
+        if(question.active) {
+            return(
+                <>
+                    <Header/>
+                    <View>
+                        <QuestionView />
+                    </View>
+                    <Footer/>
+                </>
+            );
+        }
 
         return(
             <>
                 <Header/>
                 <View>
-                    { view === 'waiting' &&
-                        <WaitingView/>
-                    }
-                    { view === 'question' &&
-                        <QuestionView/>
-                    }
-                    { view === 'stats' &&
-                        <StatsView/>
-                    }
+                    <StatsView />
                 </View>
                 <Footer/>
             </>

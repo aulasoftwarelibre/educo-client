@@ -1,19 +1,12 @@
 import { AnyAction, Reducer } from 'redux';
-import { CHANGE_QUESTION } from './actions/change-question';
-import { CHANGE_ANSWERS } from './actions/change-answers';
+import { FETCH_SESSION_BY_ID_SUCCESS } from './actions/fetch-session-by-id';
 
 export const reducer: Reducer<State> = (state: State = initialState, action: AnyAction) => {
     switch(action.type) {
-        case CHANGE_QUESTION: {
+        case FETCH_SESSION_BY_ID_SUCCESS: {
             return {
                 ...state,
                 question: action.question,
-            };
-        }
-        case CHANGE_ANSWERS: {
-            return {
-                ...state,
-                answers: action.answers,
             };
         }
         default: {
@@ -24,12 +17,13 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
 
 export interface State {
     readonly question?: Question,
-    readonly answers?: Answer[],
 }
 
 export interface Question {
     id: string,
     content: string,
+    active: boolean,
+    answers: Answer[],
 }
 
 export interface Answer {
@@ -39,5 +33,4 @@ export interface Answer {
 
 const initialState: State = {
     question: undefined,
-    answers: undefined,
 };
