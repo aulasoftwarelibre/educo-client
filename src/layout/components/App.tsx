@@ -19,35 +19,16 @@ export class App extends React.Component<Props> {
     render() {
         const { question } = this.props;
 
-        if(!question) {
-            return(
-                <>
-                    <Header/>
-                    <View>
-                        <WaitingView />
-                    </View>
-                    <Footer/>
-                </>
-            );
-        }
-
-        if(question.active) {
-            return(
-                <>
-                    <Header/>
-                    <View>
-                        <QuestionView />
-                    </View>
-                    <Footer/>
-                </>
-            );
-        }
-
         return(
             <>
                 <Header/>
                 <View>
-                    <StatsView />
+                    { !question ?
+                        <WaitingView/> :
+                        question.active ?
+                            <QuestionView /> :
+                            <StatsView />
+                    }
                 </View>
                 <Footer/>
             </>

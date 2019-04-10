@@ -8,11 +8,11 @@ import { fetchSessionById }  from '../../quiz/actions/fetch-session-by-id';
 const mapStateToProps = ({
     quiz: { question },
 }: State): PropsFromState => ({
-    question: question!,
+    question: question,
 });
 
 export interface PropsFromState {
-    question: Question,
+    question?: Question,
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): PropsFromDispatch => ({
