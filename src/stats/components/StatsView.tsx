@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Grid, Progress } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/StatsView';
+import { colorsPalette } from '../../utils/colors-palette';
 
 export const StatsView = ({
     question,
@@ -19,7 +20,8 @@ export const StatsView = ({
         </Grid.Row>
         <Grid.Row>
             <Grid.Column>
-                <RedStat
+                <Stat
+                    color={'red'}
                     percent={ percentage1 }
                     progress
                 />
@@ -27,7 +29,8 @@ export const StatsView = ({
         </Grid.Row>
         <Grid.Row>
             <Grid.Column>
-                <BlueStat
+                <Stat
+                    color={'blue'}
                     percent={ percentage2 }
                     progress
                 />
@@ -35,7 +38,8 @@ export const StatsView = ({
         </Grid.Row>
         <Grid.Row>
             <Grid.Column>
-                <YellowStat
+                <Stat
+                    color={'yellow'}
                     percent={ percentage3 }
                     progress
                 />
@@ -61,9 +65,9 @@ const Question = styled.h1`
     }
 `;
 
-const RedStat = styled(Progress)`
+const Stat = styled(Progress)`
     .bar {
-        background: #a6192e !important;
+        background: ${props => colorsPalette[props.color]} !important;
         height: 8vh !important;
     }
     
@@ -81,56 +85,6 @@ const RedStat = styled(Progress)`
             height: 12vh !important;
         }
         
-        height: 12vh;
-        font-size: 6vh !important;
-    }
-`;
-
-const BlueStat = styled(Progress)`
-    .bar {
-        background: #211551 !important;
-        height: 8vh !important;
-    }
-    
-    .bar > .progress {
-        color: rgba(255, 255, 255, 0.8) !important;
-    }
-
-    width: 80vw;
-    height: 8vh;
-    font-size: 3vh !important;
-    margin: 0 10vw !important;
-    
-    @media only screen and (orientation:landscape) {
-        .bar {
-            height: 12vh !important;
-        }
-        
-        height: 12vh;
-        font-size: 6vh !important;
-    }
-`;
-
-const YellowStat = styled(Progress)`
-    .bar {
-        background: #f6be00 !important;
-        height: 8vh !important;
-    }
-    
-    .bar > .progress {
-        color: rgba(255, 255, 255, 0.8) !important;
-    }
-
-    width: 80vw;
-    height: 8vh;
-    font-size: 3vh !important;
-    margin: 0 10vw !important;
-    
-    @media only screen and (orientation:landscape) {
-        .bar {
-            height: 12vh !important;
-        }
-    
         height: 12vh;
         font-size: 6vh !important;
     }

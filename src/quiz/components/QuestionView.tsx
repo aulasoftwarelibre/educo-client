@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/QuestionView';
+import { colorsPalette } from '../../utils/colors-palette';
 
 export const QuestionView = ({
     question,
@@ -19,23 +20,23 @@ export const QuestionView = ({
         </Grid.Row>
         <Grid.Row>
             <Grid.Column>
-                <RedButton>
+                <Answer color={'red'}>
                     { answer1 }
-                </RedButton>
+                </Answer>
             </Grid.Column>
         </Grid.Row>
         <Grid.Row>
             <Grid.Column>
-                <BlueButton>
+                <Answer color={'blue'}>
                     { answer2 }
-                </BlueButton>
+                </Answer>
             </Grid.Column>
         </Grid.Row>
         <Grid.Row>
             <Grid.Column>
-                <YellowButton>
+                <Answer color={'yellow'}>
                     { answer3 }
-                </YellowButton>
+                </Answer>
             </Grid.Column>
         </Grid.Row>
     </StyledGrid>
@@ -58,38 +59,8 @@ const Question = styled.h1`
     }
 `;
 
-const RedButton = styled(Button)`
-    background: #a6192e !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    width: 80vw;
-    height: 8vh;
-    font-size: 3vh !important;
-    padding: 0 !important;
-    margin: 0 10vw !important;
-    
-    @media only screen and (orientation:landscape) {
-        height: 12vh;
-        font-size: 6vh !important;
-    }
-`;
-
-const BlueButton = styled(Button)`
-    background: #211551 !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    width: 80vw;
-    height: 8vh;
-    font-size: 3vh !important;
-    padding: 0 !important;
-    margin: 0 10vw !important;
-    
-    @media only screen and (orientation:landscape) {
-        height: 12vh;
-        font-size: 6vh !important;
-    }
-`;
-
-const YellowButton = styled(Button)`
-    background: #f6be00 !important;
+const Answer = styled(Button)`
+    background: ${props => colorsPalette[props.color]} !important;
     color: rgba(255, 255, 255, 0.8) !important;
     width: 80vw;
     height: 8vh;

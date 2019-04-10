@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { colorsPalette } from '../../utils/colors-palette';
 
 export const WaitingView = ({
 }: Props): JSX.Element =>
@@ -8,7 +9,19 @@ export const WaitingView = ({
         <Grid.Row>
             <Grid.Column width={16}>
                 <Title>
-                    ed<U>U</U><C>C</C><O>O</O>
+                    ed
+                    <Span color={'red'}>
+                        U
+                    </Span>
+                    <Span
+                        color={'blue'}
+                        stretched
+                    >
+                        C
+                    </Span>
+                    <Span color={'yellow'}>
+                        O
+                    </Span>
                 </Title>
             </Grid.Column>
             <Grid.Column width={16}>
@@ -38,17 +51,7 @@ const Subtitle = styled.h2`
     font-size: 4vw;
 `;
 
-const U = styled.span`
-    color: #a6192e;
-    letter-spacing: -0.25vw;
-`;
-
-const C = styled.span`
-    color: #211551;
-    letter-spacing: -1vw;
-`;
-
-const O = styled.span`
-    color: #f6be00;
-    letter-spacing: -0.25vw;
+const Span = styled.span`
+    color: ${props => colorsPalette[props.color]};
+    letter-spacing: ${props => props.stretched ? '-1vw' : '-0.25vw'};
 `;
