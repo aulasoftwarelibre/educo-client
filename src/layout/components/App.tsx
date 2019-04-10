@@ -12,7 +12,7 @@ export class App extends React.Component<Props> {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchSessionState();
     }
 
