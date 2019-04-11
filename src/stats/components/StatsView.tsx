@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Grid, Progress } from 'semantic-ui-react';
-import styled from 'styled-components';
+import { Grid } from 'semantic-ui-react';
 import { PropsFromDispatch, PropsFromState } from '../containers/StatsView';
 import { Grid as StyledGrid } from '../../layout/components/Grid';
 import { Question } from '../../quiz/components/Question';
-import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
+import { Stat } from './Stat';
 
 export const StatsView = ({
     question,
@@ -51,32 +50,3 @@ export const StatsView = ({
 ;
 
 export type Props = PropsFromState & PropsFromDispatch;
-
-const Stat = styled(Progress)`
-    .bar {
-        background: ${(props: StatProps) => colorsPalette[props.color]} !important;
-        height: 8vh !important;
-    }
-    
-    .bar > .progress {
-        color: rgba(255, 255, 255, 0.8) !important;
-    }
-
-    width: 80vw;
-    height: 8vh;
-    font-size: 3vh !important;
-    margin: 0 10vw !important;
-    
-    @media only screen and (orientation:landscape) {
-        .bar {
-            height: 12vh !important;
-        }
-        
-        height: 12vh;
-        font-size: 6vh !important;
-    }
-`;
-
-interface StatProps {
-    color: PaletteColor,
-}
