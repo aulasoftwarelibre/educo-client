@@ -3,6 +3,7 @@ import { Button, Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/QuestionView';
 import { Grid as StyledGrid } from '../../layout/components/Grid';
+import { Question } from './Question';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const QuestionView = ({
@@ -44,17 +45,6 @@ export const QuestionView = ({
 ;
 
 export type Props = PropsFromState & PropsFromDispatch;
-
-const Question = styled.h1`
-    font-size: 3vh;
-    font-weight: 900;
-    padding: 2vh 10vw;
-    text-align: justify;
-    
-    @media only screen and (orientation:landscape) {
-        font-size: 6vh; 
-    }
-`;
 
 const Answer = styled(Button)`
     background: ${(props: AnswerProps) => colorsPalette[props.color]} !important;
