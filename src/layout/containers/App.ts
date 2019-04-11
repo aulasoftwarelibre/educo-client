@@ -7,7 +7,7 @@ import { fetchSessionById }  from '../../quiz/actions/fetch-session-by-id';
 const mapStateToProps = ({
     quiz: { question },
 }: State): PropsFromState => ({
-    view: !question && 'waiting' || question!.active && 'question' || 'stats',
+    view: !question ? 'waiting' : question.active ? 'question' : 'stats',
 });
 
 export interface PropsFromState {
