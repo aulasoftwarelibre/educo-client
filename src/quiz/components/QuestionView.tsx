@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Button, Grid } from 'semantic-ui-react';
-import styled from 'styled-components';
+import { Grid } from 'semantic-ui-react';
 import { PropsFromDispatch, PropsFromState } from '../containers/QuestionView';
 import { Grid as StyledGrid } from '../../layout/components/Grid';
 import { Question } from './Question';
-import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
+import { Answer } from './Answer';
 
 export const QuestionView = ({
     question,
@@ -45,22 +44,3 @@ export const QuestionView = ({
 ;
 
 export type Props = PropsFromState & PropsFromDispatch;
-
-const Answer = styled(Button)`
-    background: ${(props: AnswerProps) => colorsPalette[props.color]} !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    width: 80vw;
-    height: 8vh;
-    font-size: 3vh !important;
-    padding: 0 !important;
-    margin: 0 10vw !important;
-    
-    @media only screen and (orientation:landscape) {
-        height: 12vh;
-        font-size: 6vh !important;
-    }
-`;
-
-interface AnswerProps {
-    color: PaletteColor,
-}
