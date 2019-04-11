@@ -17,18 +17,13 @@ export class App extends React.Component<Props> {
     }
 
     render() {
-        const { question } = this.props;
+        const { view } = this.props;
 
         return(
             <>
                 <Header/>
                 <View>
-                    { !question ?
-                        <WaitingView/> :
-                        question.active ?
-                            <QuestionView /> :
-                            <StatsView />
-                    }
+                    { views[view] }
                 </View>
                 <Footer/>
             </>
@@ -37,6 +32,12 @@ export class App extends React.Component<Props> {
 }
 
 export type Props = PropsFromState & PropsFromDispatch;
+
+const views = {
+    'waiting': <WaitingView />,
+    'question': <QuestionView />,
+    'stats': <StatsView />,
+};
 
 const View = styled.div`
     height: 70vh;
