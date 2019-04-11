@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
-import { Grid as StyledGrid } from './Grid';
+import { Column, Grid, Row } from './Grid';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const WaitingView = ({
 }: Props): JSX.Element =>
-    <StyledGrid>
-        <Grid.Row>
-            <Grid.Column width={16}>
+    <Grid>
+        <Row>
+            <Column width={16}>
                 <Title>
                     ed
                     <Span color={'red'}>
@@ -24,14 +23,14 @@ export const WaitingView = ({
                         O
                     </Span>
                 </Title>
-            </Grid.Column>
-            <Grid.Column width={16}>
+            </Column>
+            <Column width={16}>
                 <Subtitle>
                     GALA DE VIDA UNIVERSITARIA Y DEPORTE
                 </Subtitle>
-            </Grid.Column>
-        </Grid.Row>
-    </StyledGrid>
+            </Column>
+        </Row>
+    </Grid>
 ;
 
 export interface Props {
