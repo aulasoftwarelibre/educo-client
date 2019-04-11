@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Grid, Progress } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/StatsView';
+import { Grid as StyledGrid } from '../../layout/components/Grid';
 import {colorsPalette, PaletteColor} from '../../utils/colors-palette';
 
 export const StatsView = ({
@@ -49,10 +50,6 @@ export const StatsView = ({
 ;
 
 export type Props = PropsFromState & PropsFromDispatch;
-
-const StyledGrid = styled(Grid)`
-    margin: 0 !important;
-`;
 
 const Question = styled.h1`
     font-size: 3vh;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { Grid as StyledGrid } from './Grid';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const WaitingView = ({
@@ -35,10 +36,6 @@ export const WaitingView = ({
 
 export interface Props {
 }
-
-const StyledGrid = styled(Grid)`
-    margin: 0 !important;
-`;
 
 const Title = styled.h1`
     text-align: center;

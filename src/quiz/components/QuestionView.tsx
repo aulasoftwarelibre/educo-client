@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/QuestionView';
+import { Grid as StyledGrid } from '../../layout/components/Grid';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const QuestionView = ({
@@ -43,10 +44,6 @@ export const QuestionView = ({
 ;
 
 export type Props = PropsFromState & PropsFromDispatch;
-
-const StyledGrid = styled(Grid)`
-    margin: 0 !important;
-`;
 
 const Question = styled.h1`
     font-size: 3vh;
