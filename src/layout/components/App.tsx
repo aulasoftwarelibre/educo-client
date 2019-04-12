@@ -3,9 +3,6 @@ import { PropsFromDispatch, PropsFromState } from '../containers/App';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { View } from './View';
-import { WaitingView } from './WaitingView';
-import QuestionView from '../../quiz/containers/QuestionView';
-import StatsView from '../../stats/containers/StatsView';
 
 export class App extends React.Component<Props> {
     constructor(props: Props) {
@@ -23,7 +20,7 @@ export class App extends React.Component<Props> {
             <>
                 <Header/>
                 <View>
-                    { views[view] }
+                    { view }
                 </View>
                 <Footer/>
             </>
@@ -32,9 +29,3 @@ export class App extends React.Component<Props> {
 }
 
 export type Props = PropsFromState & PropsFromDispatch;
-
-const views = {
-    'waiting': <WaitingView />,
-    'question': <QuestionView />,
-    'stats': <StatsView />,
-};

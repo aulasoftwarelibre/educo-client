@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Image } from 'semantic-ui-react';
 
-const Logo = styled(Image)`
+export const Logo = styled(Image)`
     height: 15vh;
     padding: 2vh 2vw;
     margin: 0 !important;
