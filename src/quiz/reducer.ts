@@ -22,7 +22,7 @@ export interface State {
 export interface Question {
     id: string,
     content: string,
-    active: boolean,
+    open: boolean,
     answers: Answer[],
 }
 

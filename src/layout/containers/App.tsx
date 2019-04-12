@@ -11,7 +11,7 @@ import { fetchSessionById }  from '../../quiz/actions/fetch-session-by-id';
 const mapStateToProps = ({
     quiz: { question },
 }: State): PropsFromState => ({
-    view: !question ? <WaitingView /> : question.active ? <QuestionView /> : <StatsView />,
+    view: !question ? <WaitingView /> : question.open ? <QuestionView /> : <StatsView />,
 });
 
 export interface PropsFromState {

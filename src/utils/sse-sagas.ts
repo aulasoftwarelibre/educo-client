@@ -32,7 +32,7 @@ export function* watchSessionSSE() {
         const question: Question = {
             id: activeQuestion['@id'],
             content: activeQuestion.content,
-            active: activeQuestion.isAcceptingAnswers,
+            open: activeQuestion.isAcceptingAnswers,
             answers: activeQuestion.answers.map((answer: any) => ({
                 id: answer['@id'],
                 content: answer.content,
