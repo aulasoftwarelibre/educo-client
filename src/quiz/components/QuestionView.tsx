@@ -6,39 +6,26 @@ import { Answer } from './Answer';
 
 export const QuestionView = ({
     question,
-    answer1,
-    answer2,
-    answer3,
 }: Props): JSX.Element =>
     <Grid>
         <Row>
             <Column>
                 <Question>
-                    { question }
+                    { question.content }
                 </Question>
             </Column>
         </Row>
-        <Row>
-            <Column>
-                <Answer color={'red'}>
-                    { answer1 }
-                </Answer>
-            </Column>
-        </Row>
-        <Row>
-            <Column>
-                <Answer color={'blue'}>
-                    { answer2 }
-                </Answer>
-            </Column>
-        </Row>
-        <Row>
-            <Column>
-                <Answer color={'yellow'}>
-                    { answer3 }
-                </Answer>
-            </Column>
-        </Row>
+        { question.answers.map((answer, index) =>
+            <Row key={ index }>
+                <Column key={ index }>
+                    <Answer key={ index }
+                        color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
+                    >
+                        { answer.content }
+                    </Answer>
+                </Column>
+            </Row>
+        )}
     </Grid>
 ;
 
