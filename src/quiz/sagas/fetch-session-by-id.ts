@@ -10,6 +10,7 @@ export function* handleFetchSessionById({}: AnyAction) {
 
         if(!activeQuestion) {
             yield put(fetchSessionByIdSuccess());
+            return;
         }
 
         const question: Question = {
