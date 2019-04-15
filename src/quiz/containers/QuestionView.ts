@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 import { QuestionView } from '../components/QuestionView';
 import { State } from '../../reducer';
 import { Question } from '../reducer';
+import { voteAnswerWithId } from '../actions/vote-answer-with-id';
 
 const mapStateToProps = ({
     quiz: { question },
@@ -15,9 +16,11 @@ export interface PropsFromState {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): PropsFromDispatch => ({
+    voteAnswerWithId: (id: string) => dispatch(voteAnswerWithId(id)),
 });
 
 export interface PropsFromDispatch {
+    voteAnswerWithId: (id: string) => AnyAction,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionView);

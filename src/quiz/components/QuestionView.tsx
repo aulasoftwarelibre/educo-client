@@ -5,23 +5,26 @@ import { Question } from './Question';
 import { Answer } from './Answer';
 
 export const QuestionView = ({
-    question,
+    question: { content, answers },
+    voteAnswerWithId,
 }: Props): JSX.Element =>
     <Grid>
         <Row>
             <Column>
                 <Question>
-                    { question.content }
+                    { content }
                 </Question>
             </Column>
         </Row>
-        { question.answers.map((answer, index) =>
+        { answers.map(({ id, content }, index) =>
             <Row key={ index }>
                 <Column key={ index }>
-                    <Answer key={ index }
+                    <Answer
+                        key={ index }
                         color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
+                        onClick={() => voteAnswerWithId(id)}
                     >
-                        { answer.content }
+                        { content }
                     </Answer>
                 </Column>
             </Row>
