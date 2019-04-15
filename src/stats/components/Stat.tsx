@@ -1,12 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Progress } from 'semantic-ui-react';
+import { Progress, ProgressProps } from 'semantic-ui-react';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const Stat = styled(Progress)`
     .bar {
-        background: ${(props: StatProps) => colorsPalette[props.color]} !important;
+        background: ${(props: Props) => colorsPalette[props.color]} !important;
         height: 8vh !important;
+        width: ${(props: Props) => Number(props.percent) * 0.68 + 12}vw !important;
     }
     
     .bar > .progress {
@@ -21,12 +22,15 @@ export const Stat = styled(Progress)`
     @media only screen and (orientation:landscape) {
         .bar {
             height: 12vh !important;
+            width: ${(props: Props) => Number(props.percent) * 0.72 + 8}vw !important;
         }
         
         height: 12vh;
         font-size: 6vh !important;
     }
 `;
+
+type Props = ProgressProps & StatProps;
 
 interface StatProps {
     color: PaletteColor,

@@ -5,46 +5,28 @@ import { Question } from '../../quiz/components/Question';
 import { Stat } from './Stat';
 
 export const StatsView = ({
-    question,
-    percentage1,
-    percentage2,
-    percentage3,
+    question: { content, answers },
 }: Props): JSX.Element =>
     <Grid>
         <Row>
             <Column>
                 <Question>
-                    { question }
+                    { content }
                 </Question>
             </Column>
         </Row>
-        <Row>
-            <Column>
-                <Stat
-                    color={'red'}
-                    percent={ percentage1 }
-                    progress
-                />
-            </Column>
-        </Row>
-        <Row>
-            <Column>
-                <Stat
-                    color={'blue'}
-                    percent={ percentage2 }
-                    progress
-                />
-            </Column>
-        </Row>
-        <Row>
-            <Column>
-                <Stat
-                    color={'yellow'}
-                    percent={ percentage3 }
-                    progress
-                />
-            </Column>
-        </Row>
+        { answers.map(({ rate }, index) =>
+            <Row key={ index }>
+                <Column key={ index }>
+                    <Stat
+                        key={ index }
+                        color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
+                        percent={ Math.round(rate) }
+                        progress
+                    />
+                </Column>
+            </Row>
+        )}
     </Grid>
 ;
 

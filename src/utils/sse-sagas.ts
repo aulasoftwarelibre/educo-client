@@ -22,20 +22,24 @@ export function* watchSessionSSE() {
 
     while(true) {
         const message = yield take(channel);
-        const { activeQuestion } = JSON.parse(message.data);
+        const { activeQuestion, isActiveQuestionOpen } = JSON.parse(message.data);
 
         if(!activeQuestion) {
             yield put(fetchSessionByIdSuccess());
             continue;
         }
 
+        const { content, answers } = activeQuestion;
+
         const question: Question = {
             id: activeQuestion['@id'],
-            content: activeQuestion.content,
-            open: activeQuestion.isAcceptingAnswers,
-            answers: activeQuestion.answers.map((answer: any) => ({
+            content: content,
+            open: isActiveQuestionOpen,
+            answers: answers.map((answer: any) => ({
                 id: answer['@id'],
                 content: answer.content,
+                correct: 'isCorrect' in answer ? answer.isCorrect : undefined,
+                rate: 'rate' in answer ? answer.rate: undefined,
             })),
         };
 

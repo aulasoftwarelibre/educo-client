@@ -6,20 +6,24 @@ import { fetchSessionByIdFailure, fetchSessionByIdSuccess } from '../actions/fet
 
 export function* handleFetchSessionById({}: AnyAction) {
     try {
-        const { data: { activeQuestion } } = yield call(fetchSessionById);
+        const { data: { activeQuestion, isActiveQuestionOpen } } = yield call(fetchSessionById);
 
         if(!activeQuestion) {
             yield put(fetchSessionByIdSuccess());
             return;
         }
 
+        const { content, answers } = activeQuestion;
+
         const question: Question = {
             id: activeQuestion['@id'],
-            content: activeQuestion.content,
-            open: activeQuestion.isAcceptingAnswers,
-            answers: activeQuestion.answers.map((answer: any) => ({
+            content: content,
+            open: isActiveQuestionOpen,
+            answers: answers.map((answer: any) => ({
                 id: answer['@id'],
                 content: answer.content,
+                correct: 'isCorrect' in answer ? answer.isCorrect : undefined,
+                rate: 'rate' in answer ? answer.rate: undefined,
             })),
         };
 

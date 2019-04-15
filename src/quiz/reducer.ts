@@ -29,6 +29,8 @@ export interface Question {
 export interface Answer {
     id: string,
     content: string,
+    correct?: boolean,
+    rate?: number,
 }
 
 const initialState: State = {
