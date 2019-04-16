@@ -23,6 +23,8 @@ export interface Question {
     id: string,
     content: string,
     open: boolean,
+    durationSeconds: number,
+    elapsedSeconds: number,
     answers: Answer[],
 }
 

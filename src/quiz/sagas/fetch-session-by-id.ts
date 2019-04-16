@@ -13,12 +13,14 @@ export function* handleFetchSessionById({}: AnyAction) {
             return;
         }
 
-        const { content, answers } = activeQuestion;
+        const { content, duration, activatedAt, answers } = activeQuestion;
 
         const question: Question = {
             id: activeQuestion['@id'],
-            content: content,
+            content,
             open: isActiveQuestionOpen,
+            durationSeconds: duration,
+            elapsedSeconds: (Date.now() - new Date(activatedAt).getTime()) / 1000,
             answers: answers.map((answer: any) => ({
                 id: answer['@id'],
                 content: answer.content,

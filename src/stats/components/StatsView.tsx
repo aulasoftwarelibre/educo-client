@@ -21,7 +21,7 @@ export const StatsView = ({
                     <Stat
                         key={ index }
                         color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
-                        percent={ Math.round(rate) }
+                        percent={ Math.round(rate!) }
                         progress
                     />
                 </Column>
