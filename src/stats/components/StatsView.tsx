@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { PropsFromDispatch, PropsFromState } from '../containers/StatsView';
 import { Column, Grid, Row } from '../../layout/components/Grid';
 import { Question } from '../../quiz/components/Question';
+import { Answer } from '../../quiz/components/Answer';
 import { Stat } from './Stat';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
@@ -25,15 +26,25 @@ export const StatsView = ({
                     </Question>
                 </Column>
             </Row>
-            { !votedAnswer && answers.map(({ content, rate }, index) =>
+            { answers.map(({ id, content, correct, rate }, index) =>
                 <Row key={ index }>
                     <Column key={ index }>
-                        <Stat
-                            key={ index }
-                            color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
-                            percent={ Math.round(rate!) }
-                            progress
-                        />
+                        { votedAnswer ?
+                            <Answer
+                                key={ index }
+                                positive={ correct }
+                                negative={ !correct && votedAnswer.id === id}
+                            >
+                                { content }
+                            </Answer>
+                            :
+                            <Stat
+                                key={ index }
+                                color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
+                                percent={ Math.round(rate!) }
+                                progress
+                            />
+                        }
                     </Column>
                 </Row>
             )}
