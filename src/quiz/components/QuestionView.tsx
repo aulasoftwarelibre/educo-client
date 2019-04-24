@@ -27,7 +27,7 @@ export const QuestionView = ({
 
     return(
         <Grid>
-            { remainingSeconds &&
+            { remainingSeconds > 0 &&
                 <Row>
                     <Column>
                         <Countdown
