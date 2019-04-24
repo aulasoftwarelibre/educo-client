@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const Answer = styled(Button)`
-    background: ${(props: AnswerProps) => colorsPalette[props.color]} !important;
+    background: ${({ color }: AnswerButtonProps) => colorsPalette[color]} !important;
     color: rgba(255, 255, 255, 0.8) !important;
     width: 80vw;
     height: 8vh;
@@ -21,3 +21,5 @@ export const Answer = styled(Button)`
 interface AnswerProps {
     color: PaletteColor,
 }
+
+type AnswerButtonProps = AnswerProps;

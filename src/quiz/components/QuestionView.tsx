@@ -7,6 +7,7 @@ import { Answer } from './Answer';
 
 export const QuestionView = ({
     question: { content, durationSeconds, elapsedSeconds, answers },
+    votedAnswer,
     voteAnswerWithId,
 }: Props): JSX.Element => {
     const [remainingSeconds, setRemainingSeconds] = React.useState(
@@ -52,8 +53,10 @@ export const QuestionView = ({
                         <Answer
                             key={ index }
                             color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
-                            disabled={ remainingSeconds < 1 }
-                            onClick={ () => voteAnswerWithId(id) }
+                            disabled={ votedAnswer && votedAnswer.id !== id || !votedAnswer && remainingSeconds < 1 }
+                            onClick={ () => {
+                                !votedAnswer && voteAnswerWithId(id);
+                            }}
                         >
                             { content }
                         </Answer>

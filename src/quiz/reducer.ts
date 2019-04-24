@@ -13,7 +13,7 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
         case VOTE_ANSWER_WITH_ID: {
             return {
                 ...state,
-                votedAnswer: state.question.answers.find(({ id }) => id === action.id),
+                votedAnswer: state.question!.answers.find(({ id }) => id === action.id),
             };
         }
         default: {
