@@ -5,9 +5,10 @@ import { State } from '../../reducer';
 import { Question } from '../../quiz/reducer';
 
 const mapStateToProps = ({
-    quiz: { question },
+    quiz: { question, votedAnswer },
 }: State): PropsFromState => ({
     question: question!,
+    votedAnswer,
 });
 
 export interface PropsFromState {

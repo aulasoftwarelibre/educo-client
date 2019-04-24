@@ -8,6 +8,7 @@ import { colorsPalette, PaletteColor } from '../../utils/colors-palette';
 
 export const StatsView = ({
     question: { content, answers },
+    votedAnswer,
 }: Props): JSX.Element => {
 
     const correctIndex = answers.findIndex(({ correct }) => correct!);
@@ -25,7 +26,7 @@ export const StatsView = ({
                     </Question>
                 </Column>
             </Row>
-            { answers.map(({ content, correct, rate }, index) =>
+            { !votedAnswer && answers.map(({ content, correct, rate }, index) =>
                 <Row key={ index }>
                     <Column key={ index }>
                         <Stat
