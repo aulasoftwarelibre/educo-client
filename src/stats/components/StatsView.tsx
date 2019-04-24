@@ -10,7 +10,6 @@ export const StatsView = ({
     question: { content, answers },
     votedAnswer,
 }: Props): JSX.Element => {
-
     const correctIndex = answers.findIndex(({ correct }) => correct!);
 
     return(
@@ -26,13 +25,12 @@ export const StatsView = ({
                     </Question>
                 </Column>
             </Row>
-            { !votedAnswer && answers.map(({ content, correct, rate }, index) =>
+            { !votedAnswer && answers.map(({ content, rate }, index) =>
                 <Row key={ index }>
                     <Column key={ index }>
                         <Stat
                             key={ index }
                             color={ index % 3 === 0 ? 'red' : index % 3 === 1 ? 'blue' : 'yellow' }
-                            disabled={ !correct }
                             percent={ Math.round(rate!) }
                             progress
                         />
