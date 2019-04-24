@@ -1,5 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { FETCH_SESSION_BY_ID_SUCCESS } from './actions/fetch-session-by-id';
+import { VOTE_ANSWER_WITH_ID } from './actions/vote-answer-with-id';
 
 export const reducer: Reducer<State> = (state: State = initialState, action: AnyAction) => {
     switch(action.type) {
@@ -7,6 +8,12 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
             return {
                 ...state,
                 question: action.question,
+            };
+        }
+        case VOTE_ANSWER_WITH_ID: {
+            return {
+                ...state,
+                votedAnswer: state.question.answers.find(({ id }) => id === action.id),
             };
         }
         default: {
@@ -17,6 +24,7 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
 
 export interface State {
     readonly question?: Question,
+    readonly votedAnswer?: Answer,
 }
 
 export interface Question {
@@ -37,4 +45,5 @@ export interface Answer {
 
 const initialState: State = {
     question: undefined,
+    votedAnswer: undefined,
 };
