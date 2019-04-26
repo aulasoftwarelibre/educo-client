@@ -8,6 +8,7 @@ export const reducer: Reducer<State> = (state: State = initialState, action: Any
             return {
                 ...state,
                 question: action.question,
+                votedAnswer: action.question ? state.votedAnswer : undefined,
             };
         }
         case VOTE_ANSWER_WITH_ID: {
