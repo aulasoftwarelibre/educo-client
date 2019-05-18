@@ -7,8 +7,4 @@ export const Logo = styled(Image)`
   margin: 0 !important;
   opacity: 0.4;
   filter: alpha(opacity=40);
-
-  @media only screen and (orientation: portrait) {
-    visibility: hidden;
-  }
 `;
