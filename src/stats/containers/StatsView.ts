@@ -2,16 +2,18 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { StatsView } from '../components/StatsView';
 import { State } from '../../reducer';
-import { Question } from '../../quiz/reducer';
+import { Answer, Question } from '../../quiz/reducer';
 
 const mapStateToProps = ({
-    quiz: { question },
+    quiz: { question, votedAnswer },
 }: State): PropsFromState => ({
     question: question!,
+    votedAnswer,
 });
 
 export interface PropsFromState {
     question: Question,
+    votedAnswer?: Answer,
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): PropsFromDispatch => ({
