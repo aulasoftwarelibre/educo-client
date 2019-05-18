@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled from "styled-components";
 import { Transition } from "semantic-ui-react";
 import { PropsFromDispatch, PropsFromState } from "../containers/QuestionView";
 import { Column, Grid, Row } from "../../layout/components/Grid";
@@ -33,54 +34,62 @@ export const QuestionView = ({
   }, []);
 
   return (
-    <Transition.Group animation={"fade down"} duration={2000}>
-      {visible && (
-        <Grid>
-          {remainingSeconds > 0 && (
+    <Container>
+      <Transition.Group animation={"fade down"} duration={2000}>
+        {visible && (
+          <Grid>
+            {remainingSeconds > 0 && (
+              <Row>
+                <Column>
+                  <Countdown
+                    value={remainingSeconds}
+                    total={durationSeconds}
+                    progress={"value"}
+                    indicating
+                  />
+                </Column>
+              </Row>
+            )}
             <Row>
               <Column>
-                <Countdown
-                  value={remainingSeconds}
-                  total={durationSeconds}
-                  progress={"value"}
-                  indicating
-                />
+                <Question>{content}</Question>
               </Column>
             </Row>
-          )}
-          <Row>
-            <Column>
-              <Question>{content}</Question>
-            </Column>
-          </Row>
-          {answers.map(({ id, content }, index) => (
-            <Row key={id}>
-              <Column>
-                <Answer
-                  color={
-                    index % 3 === 0
-                      ? "red"
-                      : index % 3 === 1
-                      ? "blue"
-                      : "yellow"
-                  }
-                  disabled={
-                    (votedAnswer && votedAnswer.id !== id) ||
-                    (!votedAnswer && remainingSeconds < 1)
-                  }
-                  onClick={() => {
-                    !votedAnswer && voteAnswerWithId(id);
-                  }}
-                >
-                  {content}
-                </Answer>
-              </Column>
-            </Row>
-          ))}
-        </Grid>
-      )}
-    </Transition.Group>
+            {answers.map(({ id, content }, index) => (
+              <Row key={id}>
+                <Column>
+                  <Answer
+                    color={
+                      index % 3 === 0
+                        ? "red"
+                        : index % 3 === 1
+                        ? "blue"
+                        : "yellow"
+                    }
+                    disabled={
+                      (votedAnswer && votedAnswer.id !== id) ||
+                      (!votedAnswer && remainingSeconds < 1)
+                    }
+                    onClick={() => {
+                      !votedAnswer && voteAnswerWithId(id);
+                    }}
+                  >
+                    {content}
+                  </Answer>
+                </Column>
+              </Row>
+            ))}
+          </Grid>
+        )}
+      </Transition.Group>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 export type Props = PropsFromState & PropsFromDispatch;

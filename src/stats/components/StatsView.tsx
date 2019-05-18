@@ -21,59 +21,61 @@ export const StatsView = ({
   const correctIndex = answers.findIndex(({ correct }) => correct!);
 
   return (
-    <Transition.Group animation={"fade down"} duration={2000}>
-      {visible && (
-        <Grid>
-          <Row>
-            <Column>
-              <Question>
-                {content}
-                <Span
-                  color={
-                    correctIndex % 3 === 0
-                      ? "red"
-                      : correctIndex % 3 === 1
-                      ? "blue"
-                      : "yellow"
-                  }
-                >
-                  {` ${answers[correctIndex].content}`}
-                </Span>
-                .
-              </Question>
-            </Column>
-          </Row>
-          {answers.map(({ id, content, correct, rate }, index) => (
-            <Row key={index}>
-              <Column key={index}>
-                {votedAnswer ? (
-                  <Answer
-                    key={index}
-                    positive={correct}
-                    negative={!correct && votedAnswer.id === id}
-                  >
-                    {content}
-                  </Answer>
-                ) : (
-                  <Stat
-                    key={index}
+    <Container>
+      <Transition.Group animation={"fade down"} duration={2000}>
+        {visible && (
+          <Grid>
+            <Row>
+              <Column>
+                <Question>
+                  {content}
+                  <Span
                     color={
-                      index % 3 === 0
+                      correctIndex % 3 === 0
                         ? "red"
-                        : index % 3 === 1
+                        : correctIndex % 3 === 1
                         ? "blue"
                         : "yellow"
                     }
-                    percent={Math.round(rate!)}
-                    progress
-                  />
-                )}
+                  >
+                    {` ${answers[correctIndex].content}`}
+                  </Span>
+                  .
+                </Question>
               </Column>
             </Row>
-          ))}
-        </Grid>
-      )}
-    </Transition.Group>
+            {answers.map(({ id, content, correct, rate }, index) => (
+              <Row key={index}>
+                <Column key={index}>
+                  {votedAnswer ? (
+                    <Answer
+                      key={index}
+                      positive={correct}
+                      negative={!correct && votedAnswer.id === id}
+                    >
+                      {content}
+                    </Answer>
+                  ) : (
+                    <Stat
+                      key={index}
+                      color={
+                        index % 3 === 0
+                          ? "red"
+                          : index % 3 === 1
+                          ? "blue"
+                          : "yellow"
+                      }
+                      percent={Math.round(rate!)}
+                      progress
+                    />
+                  )}
+                </Column>
+              </Row>
+            ))}
+          </Grid>
+        )}
+      </Transition.Group>
+    </Container>
   );
 };
 
@@ -81,6 +83,12 @@ export type Props = PropsFromState & PropsFromDispatch;
 
 const Span = styled.span`
   color: ${(props: SpanProps) => colorsPalette[props.color]};
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 interface SpanProps {
