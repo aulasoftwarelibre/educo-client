@@ -54,10 +54,9 @@ export const QuestionView = ({
             </Column>
           </Row>
           {answers.map(({ id, content }, index) => (
-            <Row key={index}>
-              <Column key={index}>
+            <Row key={id}>
+              <Column>
                 <Answer
-                  key={index}
                   color={
                     index % 3 === 0
                       ? "red"
