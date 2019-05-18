@@ -15,29 +15,25 @@ export const WaitingView = ({  }: Props): JSX.Element => {
 
   return (
     <Container>
-      <Header />
-      <Grid>
-        <Transition.Group animation={"fade down"} duration={2000}>
-          {visible && [
-            <Row key="row">
-              <Column width={16}>
-                <Title>
-                  ed
-                  <Span color={"red"}>U</Span>
-                  <Span color={"blue"} stretched>
-                    C
-                  </Span>
-                  <Span color={"yellow"}>O</Span>
-                </Title>
-              </Column>
-              <Column width={16}>
-                <Subtitle>GALA DE VIDA UNIVERSITARIA Y DEPORTE</Subtitle>
-              </Column>
-            </Row>
-          ]}
-        </Transition.Group>
-      </Grid>
-      <Footer />
+      <Transition.Group animation={"fade down"} duration={2000}>
+        {visible && (
+          <Content>
+            <Header />
+            <div>
+              <Title>
+                ed
+                <Span color={"red"}>U</Span>
+                <Span color={"blue"} stretched>
+                  C
+                </Span>
+                <Span color={"yellow"}>O</Span>
+              </Title>
+              <Subtitle>GALA DE VIDA UNIVERSITARIA Y DEPORTE</Subtitle>
+            </div>
+            <Footer />
+          </Content>
+        )}
+      </Transition.Group>
     </Container>
   );
 };
@@ -61,10 +57,22 @@ const Span = styled.span`
     props.stretched ? "-1vw" : "-0.25vw"};
 `;
 
+const Content = styled.div`
+  &&& {
+    display: flex !important;
+    height: 100%;
+
+    flex-direction: column;
+    justify-content: space-between;
+  }
+`;
+
+const Animation = styled(Transition.Group)``;
+
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: 1vh 2% 5vh;
+  width: 100%;
+  height: 100vh;
 `;
 
 interface SpanProps {

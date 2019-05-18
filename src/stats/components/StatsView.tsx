@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Transition } from "semantic-ui-react";
 import { PropsFromDispatch, PropsFromState } from "../containers/StatsView";
 import { Column, Grid, Row } from "../../layout/components/Grid";
@@ -24,29 +24,25 @@ export const StatsView = ({
     <Container>
       <Transition.Group animation={"fade down"} duration={2000}>
         {visible && (
-          <Grid>
-            <Row>
-              <Column>
-                <Question>
-                  {content}
-                  <Span
-                    color={
-                      correctIndex % 3 === 0
-                        ? "red"
-                        : correctIndex % 3 === 1
-                        ? "blue"
-                        : "yellow"
-                    }
-                  >
-                    {` ${answers[correctIndex].content}`}
-                  </Span>
-                  .
-                </Question>
-              </Column>
-            </Row>
-            {answers.map(({ id, content, correct, rate }, index) => (
-              <Row key={index}>
-                <Column key={index}>
+          <div>
+            <Question>
+              {content}
+              <Span
+                color={
+                  correctIndex % 3 === 0
+                    ? "red"
+                    : correctIndex % 3 === 1
+                    ? "blue"
+                    : "yellow"
+                }
+              >
+                {` ${answers[correctIndex].content}`}
+              </Span>
+              .
+            </Question>
+            <ProgressBars>
+              {answers.map(({ id, content, correct, rate }, index) => (
+                <AnswerStat isLastElement={answers.length === index + 1}>
                   {votedAnswer ? (
                     <Answer
                       key={index}
@@ -69,10 +65,10 @@ export const StatsView = ({
                       progress
                     />
                   )}
-                </Column>
-              </Row>
-            ))}
-          </Grid>
+                </AnswerStat>
+              ))}
+            </ProgressBars>
+          </div>
         )}
       </Transition.Group>
     </Container>
@@ -89,6 +85,28 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  padding: 25vh 5vh 25vh 5vh;
+
+  @media only screen and (orientation: landscape) {
+    padding: 25vh 15vh 25vh 15vh;
+  }
+`;
+
+const ProgressBars = styled.div`
+  margin-top: 30px;
+`;
+
+const AnswerStat = styled.div`
+  ${(props: { isLastElement: boolean }) =>
+    !props.isLastElement &&
+    css`
+      padding-bottom: 25px;
+
+      @media only screen and (orientation: landscape) {
+        padding-bottom: 15px;
+      }
+    `}
 `;
 
 interface SpanProps {
