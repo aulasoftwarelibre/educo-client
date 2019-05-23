@@ -38,7 +38,7 @@ export const StatsView = ({
               >
                 {` ${answers[correctIndex].content}`}
               </Span>
-              .
+              
             </Question>
             <ProgressBars>
               {answers.map(({ id, content, correct, rate }, index) => (
@@ -77,8 +77,11 @@ export const StatsView = ({
 
 export type Props = PropsFromState & PropsFromDispatch;
 
-const Span = styled.span`
-  color: ${(props: SpanProps) => colorsPalette[props.color]};
+const Span = styled.div`
+  color: white;
+  background-color: ${(props: SpanProps) => colorsPalette[props.color]};  
+  padding: 15px;
+  margin-top: 20px;
 `;
 
 const Container = styled.div`
